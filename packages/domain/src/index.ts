@@ -60,3 +60,11 @@ export {
   type ProductModifierAssignment,
   type ResolvedModifierGroup,
 } from "./catalog/modifier-assignments.js";
+export {
+  resolveProductAvailability,
+  type AvailableModifierGroup,
+  type LocationAvailability,
+  type ProductAvailability,
+  type ProductAvailabilityCandidate,
+  type ProductUnavailabilityReason,
+} from "./catalog/availability.js";
