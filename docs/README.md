@@ -20,9 +20,10 @@ actualizarse en el mismo cambio que modifica su comportamiento.
 4. `product/visual-identity.md`
 5. `plans/2026-09-12-nextjs-web-foundation.md`
 6. `plans/2026-09-12-catalog-cart-domain-design.md`
-7. `architecture/system-context.md`
-8. `architecture/environments.md`
-9. `decisions/README.md`
+7. `plans/2026-09-12-catalog-cart-domain-implementation.md`
+8. `architecture/system-context.md`
+9. `architecture/environments.md`
+10. `decisions/README.md`
 
 Un documento debe indicar hechos confirmados, decisiones, supuestos y asuntos pendientes por
 separado. No se documentan valores de secretos.

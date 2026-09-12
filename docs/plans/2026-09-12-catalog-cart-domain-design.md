@@ -51,6 +51,12 @@ categoría y producto de la V1.
 - Un `ModifierCondition` puede activar un grupo cuando se elige una opción concreta de otro grupo.
 - Las condiciones serán simples y declarativas; no se admitirá código ni fórmulas dinámicas.
 - El sistema rechazará dependencias hacia el mismo grupo y ciclos entre grupos.
+- Los grupos asignados a una categoría se heredan en todos sus productos, salvo exclusiones
+  explícitas.
+- Los grupos propios de un producto se agregan después de los heredados.
+- Un mismo grupo no puede quedar asignado dos veces al mismo producto.
+- Un producto no modifica las reglas internas de un grupo compartido. Una variación requiere otro
+  grupo y la exclusión explícita del anterior.
 
 Esta estructura conserva casos reales de la V1, como seleccionar un combo básico o premium y mostrar
 posteriormente el grupo de acompañamientos correspondiente.
@@ -113,8 +119,9 @@ nombre, descripción, orden y ajuste de precio.
 
 ### `ModifierAssignment`
 
-Asocia un grupo con una categoría o producto. Las reglas de precedencia y exclusión para productos
-concretos se cerrarán antes de diseñar el esquema de persistencia.
+Asocia un grupo con una categoría o producto. Las asignaciones de categoría admiten exclusiones de
+productos concretos; las asignaciones directas agregan grupos propios sin sobrescribir un grupo
+compartido.
 
 ### `ModifierCondition`
 
@@ -250,7 +257,6 @@ la oferta. El punto intermedio aprobado es solicitarla al agregar el primer prod
 
 ## 11. Asuntos pendientes para fases posteriores
 
-- Precedencia y exclusiones cuando un producto hereda grupos de su categoría.
 - Catálogo real que el dueño de BBQBROS apruebe migrar desde V1.
 - Sedes, coberturas, horarios y tarifas definitivas.
 - Reglas fiscales detalladas para construir el desglose de FEL sin cambiar el precio final.
