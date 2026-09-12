@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { Besley } from "next/font/google";
 import type { ReactNode } from "react";
 
 import "./globals.css";
+
+const besley = Besley({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-besley",
+});
 
 export const metadata: Metadata = {
   title: "BBQBROS",
@@ -15,7 +22,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="es-GT">
-      <body>{children}</body>
+      <body className={besley.variable}>{children}</body>
     </html>
   );
 }

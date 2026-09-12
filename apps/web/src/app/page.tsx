@@ -1,12 +1,15 @@
 export default function HomePage() {
   return (
-    <main className="grid min-h-screen place-items-center p-6">
-      <section className="text-center" aria-labelledby="page-title">
-        <p className="mb-2 text-sm font-semibold tracking-[0.2em] uppercase">BBQBROS</p>
-        <h1 id="page-title" className="text-3xl font-bold">
+    <main className="bg-brand-dark text-brand-light grid min-h-screen place-items-center p-6">
+      <section className="max-w-xl text-center" aria-labelledby="page-title">
+        <p className="text-brand-primary mb-3 text-sm font-semibold tracking-[0.24em] uppercase">
+          BBQBROS
+        </p>
+        <h1 id="page-title" className="font-editorial text-4xl font-bold sm:text-5xl">
           Pedidos a domicilio
         </h1>
-        <p className="mt-3 text-neutral-600">La nueva experiencia está en construcción.</p>
+        <div className="bg-brand-primary mx-auto my-5 h-1 w-16" aria-hidden="true" />
+        <p className="text-brand-light/75 text-base">La nueva experiencia está en construcción.</p>
       </section>
     </main>
   );

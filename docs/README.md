@@ -17,10 +17,11 @@ actualizarse en el mismo cambio que modifica su comportamiento.
 1. `product/vision.md`
 2. `product/mvp-scope.md`
 3. `plans/2026-09-12-foundation-design.md`
-4. `plans/2026-09-12-nextjs-web-foundation.md`
-5. `architecture/system-context.md`
-6. `architecture/environments.md`
-7. `decisions/README.md`
+4. `product/visual-identity.md`
+5. `plans/2026-09-12-nextjs-web-foundation.md`
+6. `architecture/system-context.md`
+7. `architecture/environments.md`
+8. `decisions/README.md`
 
 Un documento debe indicar hechos confirmados, decisiones, supuestos y asuntos pendientes por
 separado. No se documentan valores de secretos.

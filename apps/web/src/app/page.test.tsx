@@ -7,12 +7,13 @@ describe("HomePage", () => {
   it("identifica la experiencia de pedidos a domicilio", () => {
     render(<HomePage />);
 
-    expect(
-      screen.getByRole("heading", {
-        level: 1,
-        name: "Pedidos a domicilio",
-      }),
-    ).toBeInTheDocument();
+    const heading = screen.getByRole("heading", {
+      level: 1,
+      name: "Pedidos a domicilio",
+    });
+
+    expect(heading).toBeInTheDocument();
+    expect(heading).toHaveClass("font-editorial");
     expect(screen.getByText("BBQBROS")).toBeInTheDocument();
   });
 });
