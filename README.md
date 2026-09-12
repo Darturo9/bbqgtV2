@@ -6,7 +6,8 @@ BBQBROS y se construirá de manera independiente de la V1.
 ## Estado
 
 El repositorio se encuentra en su fase fundacional. La arquitectura y el alcance están aprobados;
-las aplicaciones todavía no contienen funcionalidad de negocio.
+`apps/web` ya cuenta con una base verificable de Next.js, pero todavía no contiene funcionalidad de
+negocio. La API de integraciones continúa como marcador de posición.
 
 ## Estructura
 
@@ -40,6 +41,7 @@ docs/                   Producto, arquitectura, ADR, planes y runbooks
 ```bash
 pnpm install
 pnpm check
+pnpm --filter @bbqbros/web dev
 ```
 
 Los comandos de Supabase se habilitan mediante la dependencia local del repositorio. Docker será

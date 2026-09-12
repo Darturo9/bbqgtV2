@@ -2,5 +2,7 @@ packages:
   - "apps/*"
   - "packages/*"
 
-onlyBuiltDependencies:
-  - "supabase"
+allowBuilds:
+  sharp: false
+  supabase: true
+  unrs-resolver: false
