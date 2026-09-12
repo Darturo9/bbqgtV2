@@ -98,6 +98,7 @@ Se completará el marcador actual con:
 
 Dependencias de desarrollo, fijadas a las versiones ya utilizadas por el monorepo:
 
+- `@eslint/js` 9.39.3;
 - `@types/node` 24.13.4;
 - `eslint` 9.39.3;
 - `typescript` 5.9.3;
@@ -269,7 +270,12 @@ Archivos:
 - crear `packages/domain/eslint.config.mjs`;
 - crear `packages/domain/vitest.config.mts`;
 - crear `packages/domain/src/index.ts`;
+- crear `packages/domain/src/package-boundary.test.ts`;
 - actualizar `pnpm-lock.yaml`.
+
+La prueba inicial comprobará que el manifiesto siga siendo privado, ESM y sin dependencias de
+ejecución. Esto hace que la tarea de Vitest valide una frontera real antes de incorporar reglas de
+negocio.
 
 Comprobaciones:
 
