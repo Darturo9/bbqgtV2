@@ -1,0 +1,6 @@
+{
+  "name": "@bbqbros/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Aplicación web de clientes, administración y operación"
+}

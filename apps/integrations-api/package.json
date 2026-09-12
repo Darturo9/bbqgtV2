@@ -1,0 +1,6 @@
+{
+  "name": "@bbqbros/integrations-api",
+  "version": "0.0.0",
+  "private": true,
+  "description": "API de integraciones sensibles desplegada en Railway"
+}

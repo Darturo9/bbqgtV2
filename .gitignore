@@ -1,0 +1,35 @@
+# Dependencies and package-manager state
+node_modules/
+.pnpm-store/
+
+# Build and test outputs
+.next/
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+.turbo/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Supabase local runtime state
+supabase/.branches/
+supabase/.temp/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Codex local runtime artifacts
+.codex-log/

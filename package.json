@@ -1,0 +1,28 @@
+{
+  "name": "bbqbros-v2",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepo de la plataforma multimarcas de pedidos a domicilio BBQBros V2",
+  "packageManager": "pnpm@12.4.1",
+  "engines": {
+    "node": ">=24.21.0 <25",
+    "pnpm": ">=12.4.1 <13"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "check": "node scripts/check-agent-governance.mjs && node scripts/check-secrets.mjs && prettier --check . && turbo run lint typecheck test build",
+    "check:governance": "node scripts/check-agent-governance.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "dev": "turbo run dev --parallel",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6",
+    "supabase": "2.117.0",
+    "turbo": "2.10.12"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@bbqbros/testing",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Utilidades y datos sintéticos para pruebas"
+}
