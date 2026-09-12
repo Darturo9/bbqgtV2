@@ -16,3 +16,19 @@ export {
   type ProductId,
 } from "./shared/identifier.js";
 export { failure, success, type Failure, type Result, type Success } from "./shared/result.js";
+export {
+  MONEY_CURRENCY,
+  addMoney,
+  applyPriceAdjustment,
+  createMoney,
+  createPriceAdjustment,
+  multiplyMoney,
+  type Money,
+  type PriceAdjustment,
+} from "./money/money.js";
+export {
+  createProductPrice,
+  getDiscountPercentage,
+  getEffectivePrice,
+  type ProductPrice,
+} from "./money/product-price.js";

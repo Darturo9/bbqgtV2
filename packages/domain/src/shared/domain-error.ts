@@ -1,5 +1,11 @@
 export const DOMAIN_ERROR_CODES = {
   invalidIdentifier: "INVALID_IDENTIFIER",
+  invalidMoney: "INVALID_MONEY",
+  invalidMoneyMultiplier: "INVALID_MONEY_MULTIPLIER",
+  invalidPriceAdjustment: "INVALID_PRICE_ADJUSTMENT",
+  invalidProductPrice: "INVALID_PRODUCT_PRICE",
+  moneyOverflow: "MONEY_OVERFLOW",
+  negativeMoneyResult: "NEGATIVE_MONEY_RESULT",
 } as const;
 
 export type DomainErrorCode = (typeof DOMAIN_ERROR_CODES)[keyof typeof DOMAIN_ERROR_CODES];
