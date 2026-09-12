@@ -4,6 +4,15 @@
 - **Sede:** ubicación operativa que prepara y entrega pedidos.
 - **Cobertura:** regla geográfica que indica si una sede atiende una dirección y con qué tarifa y
   tiempo estimado.
+- **Catálogo:** conjunto de categorías, productos, modificadores y precios pertenecientes a una
+  marca.
+- **Grupo de modificadores:** pregunta de personalización con reglas de selección y opciones, por
+  ejemplo elegir un combo o un acompañamiento.
+- **Opción de modificador:** respuesta seleccionable dentro de un grupo, con un posible ajuste de
+  precio.
+- **Carrito:** selección temporal y todavía no persistida de productos configurados por el cliente.
+- **Línea de carrito:** producto, opciones, instrucciones y cantidad que comparten una configuración
+  identificable.
 - **Orden:** intención de compra persistida con una fotografía de precios y datos.
 - **Pedido:** término operativo y visible para referirse a una orden.
 - **Confirmación operativa:** aceptación del pedido por parte del restaurante.
