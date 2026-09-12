@@ -2,7 +2,7 @@ export default function HomePage() {
   return (
     <main className="bg-brand-dark text-brand-light grid min-h-screen place-items-center p-6">
       <section className="max-w-xl text-center" aria-labelledby="page-title">
-        <p className="text-brand-primary mb-3 text-sm font-semibold tracking-[0.24em] uppercase">
+        <p className="font-brand text-brand-primary mb-3 text-3xl tracking-[0.08em] uppercase">
           BBQBROS
         </p>
         <h1 id="page-title" className="font-editorial text-4xl font-bold sm:text-5xl">

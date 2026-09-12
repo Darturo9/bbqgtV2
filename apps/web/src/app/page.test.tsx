@@ -14,6 +14,10 @@ describe("HomePage", () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveClass("font-editorial");
-    expect(screen.getByText("BBQBROS")).toBeInTheDocument();
+
+    const brandName = screen.getByText("BBQBROS");
+
+    expect(brandName).toBeInTheDocument();
+    expect(brandName).toHaveClass("font-brand");
   });
 });

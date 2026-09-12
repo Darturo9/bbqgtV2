@@ -13,12 +13,14 @@
   --color-brand-secondary: var(--bbq-brown);
   --color-brand-dark: var(--bbq-black);
   --color-brand-light: var(--bbq-white);
+  --font-brand: var(--font-brookline), Impact, sans-serif;
   --font-editorial: var(--font-besley), Georgia, serif;
+  --font-ui: "Avenir Next", Avenir, "Segoe UI", sans-serif;
 }
 
 body {
   margin: 0;
   background: var(--bbq-white);
   color: var(--bbq-black);
-  font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-family: var(--font-ui);
 }
