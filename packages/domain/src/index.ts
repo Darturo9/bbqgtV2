@@ -48,3 +48,15 @@ export {
   validateModifierSelection,
   type ValidatedModifierSelection,
 } from "./catalog/modifier-selection.js";
+export {
+  getActiveModifierGroups,
+  validateModifierConditions,
+  type ModifierCondition,
+  type ModifierConditionGraph,
+} from "./catalog/modifier-conditions.js";
+export {
+  resolveModifierGroupsForProduct,
+  type CategoryModifierAssignment,
+  type ProductModifierAssignment,
+  type ResolvedModifierGroup,
+} from "./catalog/modifier-assignments.js";
