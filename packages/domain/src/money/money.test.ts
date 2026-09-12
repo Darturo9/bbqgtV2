@@ -8,6 +8,7 @@ import {
   createMoney,
   createPriceAdjustment,
   multiplyMoney,
+  sumPriceAdjustments,
   type Money,
   type PriceAdjustment,
 } from "./money.js";
@@ -68,6 +69,28 @@ describe("Money", () => {
         path: "minorUnits",
         details: { reason },
       },
+    });
+  });
+
+  it("sums positive and negative price adjustments", () => {
+    const adjustments = [
+      getSuccess(createPriceAdjustment(2_000)),
+      getSuccess(createPriceAdjustment(-500)),
+      getSuccess(createPriceAdjustment(250)),
+    ];
+
+    expect(sumPriceAdjustments(adjustments)).toEqual({
+      ok: true,
+      value: { currency: "GTQ", minorUnits: 1_750 },
+    });
+  });
+
+  it("rejects an unsafe price adjustment sum", () => {
+    const maximum = getSuccess(createPriceAdjustment(Number.MAX_SAFE_INTEGER));
+
+    expect(sumPriceAdjustments([maximum, maximum])).toMatchObject({
+      ok: false,
+      error: { code: "MONEY_OVERFLOW", details: { operation: "price_adjustment_sum" } },
     });
   });
 

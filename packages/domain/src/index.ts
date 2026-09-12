@@ -23,6 +23,7 @@ export {
   createMoney,
   createPriceAdjustment,
   multiplyMoney,
+  sumPriceAdjustments,
   type Money,
   type PriceAdjustment,
 } from "./money/money.js";
@@ -32,3 +33,18 @@ export {
   getEffectivePrice,
   type ProductPrice,
 } from "./money/product-price.js";
+export {
+  createModifierGroup,
+  createModifierOption,
+  isModifierGroupRequired,
+  type CreateModifierGroupInput,
+  type CreateModifierOptionInput,
+  type ModifierGroup,
+  type ModifierOption,
+  type ModifierSelectionType,
+} from "./catalog/model.js";
+export {
+  calculateConfiguredPrice,
+  validateModifierSelection,
+  type ValidatedModifierSelection,
+} from "./catalog/modifier-selection.js";

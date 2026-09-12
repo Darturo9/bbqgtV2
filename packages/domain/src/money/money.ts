@@ -84,6 +84,24 @@ export function createPriceAdjustment(minorUnits: number): Result<PriceAdjustmen
   return success(adjustmentFromValidatedMinorUnits(minorUnits));
 }
 
+export function sumPriceAdjustments(
+  adjustments: readonly PriceAdjustment[],
+): Result<PriceAdjustment, DomainError> {
+  const total = adjustments.reduce((sum, adjustment) => sum + BigInt(adjustment.minorUnits), 0n);
+  const safeLimit = BigInt(Number.MAX_SAFE_INTEGER);
+
+  if (total > safeLimit || total < -safeLimit) {
+    return failure(
+      createDomainError(DOMAIN_ERROR_CODES.moneyOverflow, {
+        path: "minorUnits",
+        details: { operation: "price_adjustment_sum" },
+      }),
+    );
+  }
+
+  return success(adjustmentFromValidatedMinorUnits(Number(total)));
+}
+
 export function addMoney(left: Money, right: Money): Result<Money, DomainError> {
   const minorUnits = left.minorUnits + right.minorUnits;
 
