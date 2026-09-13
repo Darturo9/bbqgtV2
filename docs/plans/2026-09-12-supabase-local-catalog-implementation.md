@@ -263,6 +263,8 @@ chore(database): initialize local Supabase
 
 ### Etapa 2: crear el núcleo del catálogo
 
+Estado de ejecución: completada y verificada el 2026-09-12.
+
 Archivos:
 
 - crear mediante CLI `<timestamp>_create_catalog_core.sql`;

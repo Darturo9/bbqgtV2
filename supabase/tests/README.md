@@ -1,4 +1,9 @@
 # Pruebas de base de datos
 
-Este directorio contendrá pruebas de restricciones, funciones, permisos y RLS. Las pruebas deberán
-ejecutarse contra Supabase local.
+Los archivos SQL de este directorio son suites pgTAP ejecutadas mediante `pnpm db:test`.
+
+- `001_schema.test.sql` verifica estructura, seguridad inicial y timestamps del catálogo.
+- `002_catalog_constraints.test.sql` verifica datos válidos, checks, unicidad y aislamiento
+  multimarcas.
+
+Cada suite se ejecuta dentro de una transacción y revierte sus datos de prueba al terminar.
