@@ -4,15 +4,15 @@ Esta carpeta será la única fuente de verdad de la base de datos.
 
 ## Estado
 
-El ambiente local está inicializado con Supabase CLI `2.117.0` y PostgreSQL 17. La primera migración
-crea el núcleo multimarcas del catálogo: marcas, sedes, categorías, productos, grupos y opciones de
-modificadores. Todavía no existen relaciones de asignación, políticas de lectura pública ni datos
-seed; se crearán en las etapas siguientes del plan aprobado.
+El ambiente local está inicializado con Supabase CLI `2.117.0` y PostgreSQL 17. Las migraciones
+crean el núcleo multimarcas del catálogo y sus relaciones: marcas, sedes, categorías, productos,
+modificadores, asignaciones, condiciones y disponibilidad por sede. Todavía no existen políticas de
+lectura pública ni datos seed; se crearán en las etapas siguientes del plan aprobado.
 
 `config.toml` desactiva la exposición automática de tablas a Data API. Cada tabla futura necesitará
 grants y RLS explícitos en su migración.
 
-Las seis tablas actuales tienen RLS habilitada, pero permanecen sin políticas ni privilegios para
+Las doce tablas actuales tienen RLS habilitada, pero permanecen sin políticas ni privilegios para
 `anon` y `authenticated`. Este cierre es deliberado hasta implementar y probar la lectura pública.
 
 ## Ambientes

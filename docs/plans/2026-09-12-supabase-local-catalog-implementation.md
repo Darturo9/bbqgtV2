@@ -312,6 +312,8 @@ feat(database): create catalog core schema
 
 ### Etapa 3: modelar asignaciones y disponibilidad
 
+Estado de ejecución: completada y verificada el 2026-09-12.
+
 Archivos:
 
 - crear mediante CLI `<timestamp>_create_catalog_relationships.sql`;
