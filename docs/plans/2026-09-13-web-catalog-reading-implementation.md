@@ -319,7 +319,7 @@ chore(web): add typed Supabase dependencies
 
 ### Etapa 2: validar configuración y crear el cliente de servidor
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
