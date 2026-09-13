@@ -8,5 +8,6 @@ Los archivos SQL de este directorio son suites pgTAP ejecutadas mediante `pnpm d
 - `003_catalog_rls.test.sql` verifica privilegios y políticas con los roles reales `anon` y
   `authenticated`.
 - `004_storage.test.sql` verifica el bucket público y el bloqueo efectivo de escrituras cliente.
+- `005_seed.test.sql` verifica el contenido sintético y su proyección pública después de cada reset.
 
 Cada suite se ejecuta dentro de una transacción y revierte sus datos de prueba al terminar.

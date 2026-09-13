@@ -411,6 +411,8 @@ feat(database): configure catalog storage
 
 ### Etapa 6: crear el seed sintético
 
+Estado de ejecución: completada y verificada el 2026-09-13.
+
 Archivo:
 
 - crear `supabase/seed/001_catalog.sql`.

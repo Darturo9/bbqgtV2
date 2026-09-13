@@ -8,8 +8,9 @@ El ambiente local está inicializado con Supabase CLI `2.117.0` y PostgreSQL 17.
 crean el núcleo multimarcas del catálogo y sus relaciones: marcas, sedes, categorías, productos,
 modificadores, asignaciones, condiciones y disponibilidad por sede. El catálogo activo ya tiene
 lectura pública protegida mediante privilegios mínimos y RLS. Storage incluye el bucket público
-`catalog`, restringido a imágenes aprobadas de hasta 2 MiB y sin escritura desde roles cliente.
-Todavía no existen datos seed; se crearán en una etapa posterior del plan aprobado.
+`catalog`, restringido a imágenes aprobadas de hasta 2 MiB y sin escritura desde roles cliente. El
+seed local reconstruye un catálogo BBQBROS completamente sintético y una marca ficticia inactiva
+para comprobar el comportamiento del modelo y de RLS.
 
 `config.toml` desactiva la exposición automática de tablas a Data API. Cada tabla futura necesitará
 grants y RLS explícitos en su migración.
@@ -21,6 +22,9 @@ además `is_available = true`; ambos roles carecen de permisos de escritura.
 El bucket `catalog` sirve imágenes públicas desde rutas relativas como
 `bbqbros/products/archivo.webp`. No existe ninguna política de carga, actualización o eliminación
 para `anon` o `authenticated`.
+
+Los datos de `seed/` son exclusivos de desarrollo y pruebas. Usan UUID constantes y nombres con
+marcadores como `Demo` o `de Prueba`; no contienen información comercial ni personal de V1.
 
 ## Ambientes
 
