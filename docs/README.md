@@ -22,10 +22,11 @@ actualizarse en el mismo cambio que modifica su comportamiento.
 6. `plans/2026-09-12-catalog-cart-domain-design.md`
 7. `plans/2026-09-12-catalog-cart-domain-implementation.md`
 8. `plans/2026-09-12-supabase-local-catalog-design.md`
-9. `../packages/domain/README.md`
-10. `architecture/system-context.md`
-11. `architecture/environments.md`
-12. `decisions/README.md`
+9. `plans/2026-09-12-supabase-local-catalog-implementation.md`
+10. `../packages/domain/README.md`
+11. `architecture/system-context.md`
+12. `architecture/environments.md`
+13. `decisions/README.md`
 
 Un documento debe indicar hechos confirmados, decisiones, supuestos y asuntos pendientes por
 separado. No se documentan valores de secretos.

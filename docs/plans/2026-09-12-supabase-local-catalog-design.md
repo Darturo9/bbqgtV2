@@ -381,10 +381,11 @@ La implementación estará completa cuando:
 - las pruebas pgTAP, los tipos generados y `pnpm check` sean aprobados;
 - los comandos y límites operativos estén documentados.
 
-## 15. Siguiente cambio recomendado
+## 15. Plan de implementación
 
-Crear un plan de implementación por etapas con archivos, orden de migraciones, pruebas, comandos de
-verificación y commits previstos. No crear migraciones antes de revisar y aprobar ese plan.
+El plan detallado está documentado en
+[`2026-09-12-supabase-local-catalog-implementation.md`](2026-09-12-supabase-local-catalog-implementation.md).
+No se crearán migraciones antes de revisar y aprobar ese plan.
 
 ## 16. Referencias
 
