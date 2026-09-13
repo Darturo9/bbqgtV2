@@ -7,8 +7,9 @@ Esta carpeta será la única fuente de verdad de la base de datos.
 El ambiente local está inicializado con Supabase CLI `2.117.0` y PostgreSQL 17. Las migraciones
 crean el núcleo multimarcas del catálogo y sus relaciones: marcas, sedes, categorías, productos,
 modificadores, asignaciones, condiciones y disponibilidad por sede. El catálogo activo ya tiene
-lectura pública protegida mediante privilegios mínimos y RLS. Todavía no existen datos seed; se
-crearán en una etapa posterior del plan aprobado.
+lectura pública protegida mediante privilegios mínimos y RLS. Storage incluye el bucket público
+`catalog`, restringido a imágenes aprobadas de hasta 2 MiB y sin escritura desde roles cliente.
+Todavía no existen datos seed; se crearán en una etapa posterior del plan aprobado.
 
 `config.toml` desactiva la exposición automática de tablas a Data API. Cada tabla futura necesitará
 grants y RLS explícitos en su migración.
@@ -16,6 +17,10 @@ grants y RLS explícitos en su migración.
 Las doce tablas actuales tienen RLS habilitada. Los roles `anon` y `authenticated` reciben solamente
 `SELECT` y ven registros activos cuyos padres también son visibles. La disponibilidad pública exige
 además `is_available = true`; ambos roles carecen de permisos de escritura.
+
+El bucket `catalog` sirve imágenes públicas desde rutas relativas como
+`bbqbros/products/archivo.webp`. No existe ninguna política de carga, actualización o eliminación
+para `anon` o `authenticated`.
 
 ## Ambientes
 

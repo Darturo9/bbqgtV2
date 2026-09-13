@@ -380,6 +380,8 @@ feat(database): secure public catalog access
 
 ### Etapa 5: configurar Storage del catálogo
 
+Estado de ejecución: completada y verificada el 2026-09-12.
+
 Archivos:
 
 - crear mediante CLI `<timestamp>_configure_catalog_storage.sql`;

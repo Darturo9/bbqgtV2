@@ -7,5 +7,6 @@ Los archivos SQL de este directorio son suites pgTAP ejecutadas mediante `pnpm d
   aislamiento multimarcas.
 - `003_catalog_rls.test.sql` verifica privilegios y políticas con los roles reales `anon` y
   `authenticated`.
+- `004_storage.test.sql` verifica el bucket público y el bloqueo efectivo de escrituras cliente.
 
 Cada suite se ejecuta dentro de una transacción y revierte sus datos de prueba al terminar.
