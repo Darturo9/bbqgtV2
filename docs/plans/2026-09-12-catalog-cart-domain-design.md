@@ -278,8 +278,9 @@ incidencia si cambia un precio normal oculto mientras continúa vigente la misma
 La guía consumible y las firmas vigentes están documentadas en
 [`packages/domain/README.md`](../../packages/domain/README.md).
 
-## 13. Siguiente cambio recomendado
+## 13. Continuidad
 
-Diseñar el esquema local de Supabase que persistirá estos conceptos, incluyendo restricciones,
-permisos, RLS, datos sintéticos y reconstrucción reproducible. Las tablas no deben copiar las
-estructuras de V1 ni modificar los contratos del dominio sin una nueva decisión documentada.
+El diseño siguiente quedó documentado en
+[`2026-09-12-supabase-local-catalog-design.md`](2026-09-12-supabase-local-catalog-design.md). Las
+tablas no copiarán las estructuras de V1 ni modificarán los contratos del dominio sin una nueva
+decisión documentada.

@@ -582,11 +582,12 @@ La implementación estará terminada cuando:
 - Migración del catálogo V1.
 - NeoPay, FEL, WhatsApp y GoNau.
 
-## 13. Paso posterior
+## 13. Continuidad
 
-Con este plan completado, el siguiente diseño deberá transformar los conceptos del dominio en un
-esquema de Supabase local con restricciones, permisos y RLS. La API pública y sus pruebas ya están
-estables para iniciar ese diseño; esto no autoriza todavía la creación de migraciones.
+El diseño de persistencia quedó documentado en
+[`2026-09-12-supabase-local-catalog-design.md`](2026-09-12-supabase-local-catalog-design.md). Este
+registro no autoriza por sí solo la creación de migraciones: primero requiere un plan de
+implementación revisado y aprobado.
 
 ## 14. Registro final
 
