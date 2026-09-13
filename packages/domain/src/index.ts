@@ -68,3 +68,28 @@ export {
   type ProductAvailabilityCandidate,
   type ProductUnavailabilityReason,
 } from "./catalog/availability.js";
+export {
+  MAX_SPECIAL_INSTRUCTIONS_LENGTH,
+  normalizeSpecialInstructions,
+  type SpecialInstructions,
+} from "./cart/instructions.js";
+export { createCartLineKey, type CartLineKey } from "./cart/line-key.js";
+export {
+  CART_LIFETIME_MILLISECONDS,
+  MAX_CART_LINE_QUANTITY,
+  MAX_CART_TOTAL_QUANTITY,
+  type Cart,
+  type CartLine,
+  type CartLineSubtotal,
+  type CartTotals,
+} from "./cart/model.js";
+export {
+  addCartLine,
+  calculateCartTotals,
+  clearCart,
+  createCart,
+  isCartExpired,
+  removeCartLine,
+  updateCartLineQuantity,
+  type AddCartLineInput,
+} from "./cart/cart.js";
