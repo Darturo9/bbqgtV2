@@ -372,7 +372,7 @@ feat(web): configure server catalog client
 
 ### Etapa 3: definir el modelo de lectura y el puerto
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
