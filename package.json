@@ -11,6 +11,7 @@
   "scripts": {
     "build": "turbo run build",
     "check": "node scripts/check-agent-governance.mjs && node scripts/check-secrets.mjs && prettier --check . && turbo run lint typecheck test build",
+    "check:database": "supabase db reset --local && supabase db lint --local --schema public --level warning --fail-on error && supabase db advisors --local --type all --level warn --fail-on error && supabase test db --local && node scripts/database-types.mjs check",
     "check:governance": "node scripts/check-agent-governance.mjs",
     "check:secrets": "node scripts/check-secrets.mjs",
     "db:advisors": "supabase db advisors --local --type all --level warn --fail-on error",

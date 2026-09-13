@@ -493,6 +493,8 @@ chore(contracts): publish generated database types
 
 ### Etapa 8: integrar la verificación local y CI
 
+Estado de ejecución: completada y verificada el 2026-09-13.
+
 Archivos:
 
 - actualizar `package.json`;

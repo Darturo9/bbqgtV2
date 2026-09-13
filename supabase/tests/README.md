@@ -11,3 +11,7 @@ Los archivos SQL de este directorio son suites pgTAP ejecutadas mediante `pnpm d
 - `005_seed.test.sql` verifica el contenido sintético y su proyección pública después de cada reset.
 
 Cada suite se ejecuta dentro de una transacción y revierte sus datos de prueba al terminar.
+
+La comprobación recomendada es `pnpm check:database` con Supabase local iniciado. Primero
+reconstruye la base para que las pruebas nunca dependan del estado manual previo y después ejecuta
+lint, advisors, estas suites y la comprobación del contrato TypeScript.

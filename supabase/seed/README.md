@@ -3,5 +3,8 @@
 `001_catalog.sql` contiene el catálogo sintético y determinista usado en desarrollo local y pruebas.
 Supabase lo ejecuta después de las migraciones durante `pnpm db:reset`.
 
+`pnpm check:database` reconstruye y vuelve a validar este contenido en cada ejecución. El seed debe
+ser determinista para que un clon limpio y GitHub Actions obtengan el mismo catálogo.
+
 Los datos reales de BBQBROS no se copiarán desde V1 sin un plan de migración aprobado. Este seed no
 debe promoverse a producción mediante `--include-seed`.

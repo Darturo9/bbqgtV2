@@ -48,15 +48,25 @@ marcadores como `Demo` o `de Prueba`; no contienen información comercial ni per
 ```bash
 pnpm db:start
 pnpm db:status
+pnpm check:database
 pnpm db:reset
 pnpm db:lint
 pnpm db:advisors
 pnpm db:test
+pnpm db:types
+pnpm db:types:check
 pnpm db:stop
 ```
 
 `db:reset` destruye y reconstruye únicamente la base local. `db:stop` conserva los volúmenes. Los
-comandos no enlazan staging o producción.
+comandos no enlazan staging o producción. `check:database` exige Supabase iniciado y ejecuta reset,
+lint, advisors, pruebas y comprobación del contrato TypeScript en ese orden.
+
+El contrato generado vive en `packages/contracts/src/database.types.ts`. Se actualiza con
+`pnpm db:types`, se versiona junto con las migraciones y no se edita manualmente.
+
+GitHub Actions reproduce el mismo flujo en un trabajo de base independiente, sin secretos ni
+proyectos remotos enlazados, y detiene Supabase aunque una comprobación falle.
 
 La guía operativa completa está en
 [`docs/runbooks/local-development.md`](../docs/runbooks/local-development.md).
