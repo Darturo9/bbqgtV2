@@ -2,7 +2,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select extensions.plan(31);
+select extensions.plan(29);
 
 select extensions.ok(
   exists (select 1 from pg_namespace where nspname = 'private'),
@@ -81,9 +81,6 @@ select extensions.ok(to_regprocedure('private.set_updated_at()') is not null, 't
 select extensions.ok(not (select prosecdef from pg_proc where oid = 'private.set_updated_at()'::regprocedure), 'timestamp function is security invoker');
 select extensions.ok((select proconfig @> array['search_path=""'] from pg_proc where oid = 'private.set_updated_at()'::regprocedure), 'timestamp function has an empty fixed search_path');
 select extensions.is((select count(*) from pg_trigger where not tgisinternal and tgname = 'set_updated_at' and tgrelid in ('public.brands'::regclass, 'public.locations'::regclass, 'public.categories'::regclass, 'public.products'::regclass, 'public.modifier_groups'::regclass, 'public.modifier_options'::regclass)), 6::bigint, 'all catalog tables update updated_at through a trigger');
-select extensions.is((select count(*) from pg_policy where polrelid in ('public.brands'::regclass, 'public.locations'::regclass, 'public.categories'::regclass, 'public.products'::regclass, 'public.modifier_groups'::regclass, 'public.modifier_options'::regclass)), 0::bigint, 'stage 2 creates no RLS policies');
-select extensions.ok(not exists (select 1 from information_schema.role_table_grants where table_schema = 'public' and table_name in ('brands', 'locations', 'categories', 'products', 'modifier_groups', 'modifier_options') and grantee in ('anon', 'authenticated')), 'Data API roles receive no catalog privileges yet');
-
 select * from extensions.finish();
 
 rollback;

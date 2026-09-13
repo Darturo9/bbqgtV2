@@ -347,6 +347,8 @@ feat(database): model catalog relationships
 
 ### Etapa 4: aplicar privilegios y RLS pública
 
+Estado de ejecución: completada y verificada el 2026-09-12.
+
 Archivos:
 
 - crear mediante CLI `<timestamp>_secure_public_catalog.sql`;
