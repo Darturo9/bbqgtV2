@@ -20,6 +20,8 @@
     "db:status": "supabase status",
     "db:stop": "supabase stop",
     "db:test": "supabase test db --local",
+    "db:types": "node scripts/database-types.mjs write",
+    "db:types:check": "node scripts/database-types.mjs check",
     "dev": "turbo run dev --parallel",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

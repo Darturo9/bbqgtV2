@@ -453,6 +453,8 @@ test(database): seed synthetic catalog
 
 ### Etapa 7: generar y versionar tipos de base de datos
 
+Estado de ejecución: completada y verificada el 2026-09-13.
+
 Archivos:
 
 - crear `scripts/database-types.mjs`;
