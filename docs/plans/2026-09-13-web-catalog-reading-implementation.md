@@ -289,7 +289,7 @@ incorrecto.
 
 ### Etapa 1: fijar dependencias y fronteras del paquete web
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
