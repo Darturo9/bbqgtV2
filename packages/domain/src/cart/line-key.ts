@@ -16,6 +16,7 @@ export function createCartLineKey(
   }>,
 ): CartLineKey {
   const canonicalSelections = input.modifierSelections
+    .filter((selection) => selection.options.length > 0)
     .map(
       (selection) =>
         [selection.groupId, selection.options.map((option) => option.id).sort()] as const,

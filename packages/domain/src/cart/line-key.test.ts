@@ -132,6 +132,18 @@ describe("cart line key", () => {
     );
   });
 
+  it("ignores optional selections that contain no options", () => {
+    const optionalGroup = group("optional-empty", ["unused-option"]);
+    const emptySelection = getSuccess(
+      validateModifierSelection({ brandId, group: optionalGroup, optionIds: [] }),
+    );
+    const productId = id("product", "product-empty-selection");
+
+    expect(createCartLineKey({ productId, modifierSelections: [emptySelection] })).toBe(
+      createCartLineKey({ productId, modifierSelections: [] }),
+    );
+  });
+
   it("changes when normalized instructions change", () => {
     const productId = id("product", "product-instructions");
 
