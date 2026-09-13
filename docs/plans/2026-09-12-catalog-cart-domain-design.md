@@ -1,9 +1,9 @@
 # Diseño del dominio de catálogo y carrito
 
-- Estado: aprobado
+- Estado: implementado
 - Fecha: 2026-09-12
 - Alcance: reglas puras de catálogo, modificadores y carrito del MVP
-- Implementación: pendiente
+- Implementación: completada y verificada el 2026-09-12
 
 ## 1. Objetivo
 
@@ -186,21 +186,18 @@ recibirán datos simples y devolverán resultados explícitos.
 Los textos de interfaz no vivirán en el dominio. El dominio devolverá códigos y datos estructurados;
 la web decidirá cómo explicarlos al cliente.
 
-## 7. Errores de dominio previstos
+## 7. Errores e incidencias implementados
 
-- `PRODUCT_NOT_AVAILABLE`
-- `OPTION_NOT_AVAILABLE`
-- `REQUIRED_SELECTION_MISSING`
-- `SELECTION_LIMIT_EXCEEDED`
-- `INVALID_MODIFIER_DEPENDENCY`
-- `CART_LINE_LIMIT_EXCEEDED`
-- `CART_TOTAL_LIMIT_EXCEEDED`
-- `SPECIAL_INSTRUCTIONS_TOO_LONG`
-- `PRICE_CHANGED`
-- `LOCATION_CHANGED`
+Los datos inválidos y las configuraciones contradictorias devuelven `DomainError` dentro de un
+`Result`. Entre sus familias se encuentran identificadores, dinero, modificadores, disponibilidad,
+límites del carrito e integridad de revalidación.
 
-La lista definitiva se cerrará durante el plan de implementación. Los errores esperados se modelarán
-como resultados tipados, no como excepciones técnicas sin contexto.
+Las diferencias comerciales detectadas durante una revalidación no son excepciones. Se acumulan en
+el informe mediante `LOCATION_CHANGED`, `PRODUCT_NOT_FOUND`, `PRODUCT_NOT_AVAILABLE`,
+`OPTION_NOT_AVAILABLE`, `SELECTION_INVALID` y `PRICE_CHANGED`.
+
+Esta separación permite que la aplicación distinga un contrato inválido de un cambio legítimo que el
+cliente debe revisar y aceptar.
 
 ## 8. Estrategia de pruebas
 
@@ -262,8 +259,27 @@ la oferta. El punto intermedio aprobado es solicitarla al agregar el primer prod
 - Reglas fiscales detalladas para construir el desglose de FEL sin cambiar el precio final.
 - Mensajes finales de interfaz para cada resultado de revalidación.
 
-## 12. Siguiente cambio recomendado
+## 12. Resultado de implementación
 
-Crear un plan de implementación pequeño para `packages/domain`, comenzando por `Money`, reglas de
-precios y configuración de modificadores en memoria. El plan deberá definir archivos, API pública,
-casos de prueba y orden de commits antes de escribir el código.
+El diseño se implementó en `packages/domain` como una biblioteca TypeScript pura, ESM, sin
+dependencias de ejecución y con una única entrada pública. Incluye identificadores, dinero, precios,
+modificadores, condiciones, asignaciones, disponibilidad por sede, carrito y revalidación.
+
+Las firmas ilustrativas se refinaron donde la operación puede recibir una configuración inválida:
+`resolveProductAvailability`, `calculateCartTotals` y `revalidateCart` devuelven `Result`. La
+disponibilidad por sede se representa como listas de identificadores habilitados y no duplica datos
+editoriales. Los modelos persistentes completos de marca, categoría y producto se reservaron para el
+diseño del esquema de Supabase.
+
+La revalidación compara el precio unitario efectivo guardado en cada línea. Por tanto, detecta los
+cambios de precio normal, oferta o modificadores que alteran el importe cobrado; no genera una
+incidencia si cambia un precio normal oculto mientras continúa vigente la misma oferta efectiva.
+
+La guía consumible y las firmas vigentes están documentadas en
+[`packages/domain/README.md`](../../packages/domain/README.md).
+
+## 13. Siguiente cambio recomendado
+
+Diseñar el esquema local de Supabase que persistirá estos conceptos, incluyendo restricciones,
+permisos, RLS, datos sintéticos y reconstrucción reproducible. Las tablas no deben copiar las
+estructuras de V1 ni modificar los contratos del dominio sin una nueva decisión documentada.

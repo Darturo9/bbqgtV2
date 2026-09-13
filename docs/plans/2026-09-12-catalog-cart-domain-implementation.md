@@ -1,10 +1,11 @@
 # Plan de implementación del dominio de catálogo y carrito
 
-- Estado: listo para implementar
+- Estado: implementado
 - Fecha: 2026-09-12
 - Diseño relacionado: `2026-09-12-catalog-cart-domain-design.md`
 - Paquete principal: `packages/domain`
 - Alcance: TypeScript puro, datos sintéticos y pruebas en memoria
+- Finalización: 2026-09-12
 
 ## 1. Resultado esperado
 
@@ -583,6 +584,49 @@ La implementación estará terminada cuando:
 
 ## 13. Paso posterior
 
-Una vez implementado este plan, el siguiente diseño deberá transformar los conceptos del dominio en
-un esquema de Supabase local con restricciones, permisos y RLS. Las migraciones no comenzarán hasta
-que la API del dominio y sus pruebas estén estables.
+Con este plan completado, el siguiente diseño deberá transformar los conceptos del dominio en un
+esquema de Supabase local con restricciones, permisos y RLS. La API pública y sus pruebas ya están
+estables para iniciar ese diseño; esto no autoriza todavía la creación de migraciones.
+
+## 14. Registro final
+
+Las nueve etapas previstas quedaron implementadas. El resultado conserva el árbol objetivo, no
+introduce dependencias de ejecución y se publica internamente mediante una sola entrada ESM.
+
+Verificación al cierre:
+
+- `pnpm check` aprobado;
+- lint y TypeScript sin advertencias;
+- build ESM y declaraciones consumibles;
+- 154 pruebas unitarias del dominio aprobadas;
+- datos de prueba completamente sintéticos;
+- ninguna dependencia de React, Next.js, NestJS, Supabase o proveedores.
+
+Refinamientos respecto a las firmas ilustrativas:
+
+- `resolveProductAvailability` devuelve `Result<ProductAvailability, DomainError>` para distinguir
+  datos inconsistentes de indisponibilidad comercial;
+- `calculateCartTotals` devuelve `Result<CartTotals, DomainError>` porque mantiene protección contra
+  desbordamientos;
+- `revalidateCart` devuelve un `CartRevalidationReport` dentro de `Result`, conserva el carrito
+  original y separa explícitamente la propuesta de su aceptación;
+- `createCart` recibe `createdAt` y deriva una expiración exacta de 24 horas;
+- `LocationAvailability` usa listas de identificadores habilitados y no duplica datos del catálogo;
+- `CartLineKey` ignora orden de entrada y selecciones opcionales vacías;
+- la revalidación compara el precio unitario efectivo; un cambio del precio normal oculto por una
+  oferta efectiva idéntica no genera `PRICE_CHANGED`;
+- los modelos editoriales completos de `BrandCatalog`, `Category` y `Product` quedaron diferidos al
+  diseño persistente, mientras el dominio expone solamente los datos mínimos que requieren sus
+  reglas actuales.
+
+Commits funcionales del plan:
+
+- `dbbef4a` — activar el paquete TypeScript;
+- `0451bca` — primitivas compartidas;
+- `f8d0db1` — dinero y precios;
+- `7933a71` — modificadores y selecciones;
+- `41be52c` — condiciones y asignaciones;
+- `d7ed09d` — disponibilidad por sede;
+- `d096d05` — operaciones del carrito;
+- `755eb9c` — identidad correcta para selecciones vacías;
+- `d5f1926` — informe de revalidación.

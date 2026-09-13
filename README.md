@@ -5,9 +5,9 @@ BBQBROS y se construirá de manera independiente de la V1.
 
 ## Estado
 
-El repositorio se encuentra en su fase fundacional. La arquitectura y el alcance están aprobados;
-`apps/web` ya cuenta con una base verificable de Next.js, pero todavía no contiene funcionalidad de
-negocio. La API de integraciones continúa como marcador de posición.
+La base del monorepo y `apps/web` están verificadas. `packages/domain` ya implementa las reglas
+puras de precios, modificadores, disponibilidad por sede, carrito y revalidación del MVP. La web
+todavía no consume este dominio y la API de integraciones continúa como marcador de posición.
 
 ## Estructura
 
@@ -50,5 +50,6 @@ servicios.
 
 ## Documentación
 
-Comenzar por [docs/README.md](docs/README.md) y por el
-[diseño fundacional](docs/plans/2026-09-12-foundation-design.md).
+Comenzar por [docs/README.md](docs/README.md), por el
+[diseño fundacional](docs/plans/2026-09-12-foundation-design.md) y por la
+[guía del dominio](packages/domain/README.md).
