@@ -220,6 +220,8 @@ política de escritura es deliberada.
 
 ### Etapa 1: inicializar y documentar el entorno local
 
+Estado de ejecución: completada y verificada el 2026-09-12.
+
 Archivos:
 
 - crear `supabase/config.toml` con `supabase init`;

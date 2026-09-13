@@ -42,11 +42,13 @@ docs/                   Producto, arquitectura, ADR, planes y runbooks
 pnpm install
 pnpm check
 pnpm --filter @bbqbros/web dev
+pnpm db:start
+pnpm db:status
 ```
 
-Los comandos de Supabase se habilitan mediante la dependencia local del repositorio. Docker será
-necesario cuando comience la configuración del ambiente local, pero esta fase todavía no inicia
-servicios.
+Supabase local requiere Docker Desktop. Sus comandos usan exclusivamente la dependencia fijada en el
+repositorio; consultar el [runbook local](docs/runbooks/local-development.md) antes de reconstruir o
+detener el ambiente.
 
 ## Documentación
 
