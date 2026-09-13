@@ -26,6 +26,35 @@ para `anon` o `authenticated`.
 Los datos de `seed/` son exclusivos de desarrollo y pruebas. Usan UUID constantes y nombres con
 marcadores como `Demo` o `de Prueba`; no contienen información comercial ni personal de V1.
 
+## Contrato implementado
+
+La historia canónica contiene cuatro migraciones, aplicadas en este orden:
+
+| Migración                                         | Responsabilidad                                     |
+| ------------------------------------------------- | --------------------------------------------------- |
+| `20260913030129_create_catalog_core.sql`          | seis entidades principales, timestamps y checks     |
+| `20260913031035_create_catalog_relationships.sql` | asignaciones, condiciones y disponibilidad por sede |
+| `20260913031927_secure_public_catalog.sql`        | grants mínimos, RLS pública e índices               |
+| `20260913032848_configure_catalog_storage.sql`    | bucket `catalog` y restricciones de archivos        |
+
+El resultado son 12 tablas públicas. El esquema conserva aislamiento por `brand_id`, importes en
+centavos, UUID, desactivación editorial y disponibilidad explícita por sede. Las reglas de conjunto,
+como ciclos completos de modificadores, permanecen en `packages/domain`.
+
+La verificación está formada por cinco suites y 171 aserciones pgTAP:
+
+| Suite                              | Aserciones | Cobertura principal                  |
+| ---------------------------------- | ---------: | ------------------------------------ |
+| `001_schema.test.sql`              |         29 | estructura, tipos, claves y RLS      |
+| `002_catalog_constraints.test.sql` |         65 | checks e integridad multimarcas      |
+| `003_catalog_rls.test.sql`         |         36 | lectura pública y bloqueo de cambios |
+| `004_storage.test.sql`             |         14 | bucket, límites y permisos           |
+| `005_seed.test.sql`                |         27 | datos sintéticos y proyección RLS    |
+
+El cierre del 2026-09-13 produjo lint sin errores, advisors sin hallazgos y las 171 pruebas
+aprobadas. `packages/contracts/src/database.types.ts` contiene el contrato TypeScript generado del
+esquema `public`; `db:types:check` impide que quede desincronizado.
+
 ## Ambientes
 
 - Local: desarrollo desechable mediante Supabase CLI.

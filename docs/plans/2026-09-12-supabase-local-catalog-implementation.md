@@ -1,7 +1,8 @@
 # Plan de implementación de Supabase local para catálogo
 
-- Estado: listo para implementar
+- Estado: implementado
 - Fecha: 2026-09-12
+- Implementación completada: 2026-09-13
 - Diseño relacionado: `2026-09-12-supabase-local-catalog-design.md`
 - Alcance: Supabase local, catálogo multimarcas, RLS, Storage, seed y pruebas
 - CLI verificada al redactar el plan: `2.117.0`
@@ -531,6 +532,8 @@ ci(database): verify local Supabase schema
 
 ### Etapa 9: cierre y documentación
 
+Estado de ejecución: completada y verificada el 2026-09-13.
+
 Archivos:
 
 - actualizar `README.md`;
@@ -657,22 +660,22 @@ Control: no enlazar proyectos remotos y documentar que staging y producción req
 
 ## 14. Criterios de finalización
 
-La implementación estará terminada cuando:
+Estos criterios quedaron verificados:
 
-- `supabase/config.toml` sea reproducible y no contenga secretos;
-- existan exactamente las doce tablas aprobadas para esta etapa;
-- las cuatro migraciones se apliquen desde cero en orden;
-- el seed sintético se cargue después de las migraciones;
-- las restricciones impidan cruces de marca y valores inválidos;
-- `anon` y `authenticated` lean únicamente catálogo activo;
-- esos roles no puedan escribir;
-- el bucket `catalog` sea público y tenga límites explícitos;
-- todas las pruebas pgTAP aprueben;
-- lint y advisors locales no reporten errores pendientes;
-- los tipos TypeScript coincidan con el esquema local;
-- CI ejecute la verificación sin credenciales remotas;
-- `pnpm check` y `pnpm check:database` aprueben;
-- documentación y estado de Git estén limpios.
+- `supabase/config.toml` es reproducible y no contiene secretos;
+- existen exactamente las doce tablas aprobadas para esta etapa;
+- las cuatro migraciones se aplican desde cero en orden;
+- el seed sintético se carga después de las migraciones;
+- las restricciones impiden cruces de marca y valores inválidos;
+- `anon` y `authenticated` leen únicamente catálogo activo;
+- esos roles no pueden escribir;
+- el bucket `catalog` es público y tiene límites explícitos;
+- todas las pruebas pgTAP aprueban;
+- lint y advisors locales no reportan errores pendientes;
+- los tipos TypeScript coinciden con el esquema local;
+- CI quedó configurado para ejecutar la verificación sin credenciales remotas;
+- `pnpm check` y `pnpm check:database` aprueban;
+- la documentación y el estado de Git están limpios.
 
 ## 15. No objetivos
 
@@ -700,3 +703,58 @@ proyección pública protegida por RLS.
 - [Supabase: migraciones](https://supabase.com/docs/guides/local-development/database-migrations)
 - [Supabase: seed](https://supabase.com/docs/guides/local-development/seeding-your-database)
 - [Supabase: pruebas pgTAP](https://supabase.com/docs/guides/local-development/testing/overview)
+
+## 18. Resultado implementado
+
+### Migraciones canónicas
+
+1. `20260913030129_create_catalog_core.sql`: esquema `private`, timestamps y seis entidades
+   editoriales principales.
+2. `20260913031035_create_catalog_relationships.sql`: seis tablas de asignaciones, condiciones y
+   disponibilidad por sede.
+3. `20260913031927_secure_public_catalog.sql`: privilegios mínimos, doce políticas RLS de lectura e
+   índices para sus predicados.
+4. `20260913032848_configure_catalog_storage.sql`: bucket público `catalog`, límite de 2 MiB y MIME
+   de imagen permitidos, sin escritura cliente.
+
+### Verificación final
+
+- 12 tablas del catálogo en el esquema `public`, todas con RLS.
+- 5 suites pgTAP y 171 aserciones: 29 de estructura, 65 de restricciones, 36 de RLS, 14 de Storage y
+  27 del seed.
+- Lint del esquema sin errores.
+- Advisors de seguridad y rendimiento sin hallazgos.
+- Contrato generado en `packages/contracts/src/database.types.ts`, expuesto como `Database` por
+  `@bbqbros/contracts`.
+- Trabajo independiente de base de datos en GitHub Actions, sin secretos ni proyecto remoto.
+- `pnpm check` y `pnpm check:database` aprobados el 2026-09-13.
+
+### Refinamientos respecto al diseño
+
+- Se añadió `005_seed.test.sql` como quinta suite para validar directamente el catálogo sintético y
+  su proyección pública después de cada reconstrucción.
+- Los tipos generados se normalizan y formatean de manera determinista antes de compararlos con el
+  archivo versionado.
+- `check:database` invoca las herramientas locales fijadas por el repositorio y no depende de una
+  instalación global de pnpm o Supabase.
+- Las instrucciones de migración se centralizaron en `supabase/README.md` y en el runbook. No se
+  guarda un README dentro de `supabase/migrations` porque la CLI lo inspecciona como si fuera una
+  migración y genera una advertencia innecesaria.
+
+### Comandos aprobados
+
+```bash
+pnpm db:start
+pnpm db:status
+pnpm db:reset
+pnpm db:lint
+pnpm db:advisors
+pnpm db:test
+pnpm db:types
+pnpm db:types:check
+pnpm check:database
+pnpm db:stop
+```
+
+Todos los comandos destructivos o de inspección de esta fase tienen destino local explícito. El
+trabajo con staging y producción requiere otro diseño y no queda autorizado por este plan.

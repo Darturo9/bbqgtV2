@@ -1,9 +1,9 @@
 # Diseño de Supabase local para catálogo
 
-- Estado: aprobado
+- Estado: implementado
 - Fecha: 2026-09-12
 - Alcance: persistencia local del catálogo multimarcas y multisedes
-- Implementación: pendiente
+- Implementación: completada y verificada el 2026-09-13
 - Decisiones relacionadas: ADR-0003 y ADR-0004
 
 ## 1. Objetivo
@@ -367,25 +367,25 @@ facilitan datos deterministas e importaciones futuras.
 Desactivar elementos conserva referencias históricas futuras y evita romper pedidos cuando se
 implemente su persistencia.
 
-## 14. Criterios de aceptación del futuro plan
+## 14. Criterios de aceptación
 
-La implementación estará completa cuando:
+La implementación se considera completa porque:
 
-- Supabase local pueda iniciarse con la versión fijada en el repositorio;
-- la base se reconstruya únicamente desde migraciones y seed;
-- las tablas reflejen el aislamiento por marca aprobado;
-- los datos sintéticos puedan consultarse como visitante;
-- los registros inactivos permanezcan ocultos;
-- ninguna escritura pública sea posible;
-- las relaciones cruzadas entre marcas sean rechazadas;
-- las pruebas pgTAP, los tipos generados y `pnpm check` sean aprobados;
-- los comandos y límites operativos estén documentados.
+- Supabase local puede iniciarse con la versión fijada en el repositorio;
+- la base se reconstruye únicamente desde migraciones y seed;
+- las tablas reflejan el aislamiento por marca aprobado;
+- los datos sintéticos pueden consultarse como visitante;
+- los registros inactivos permanecen ocultos;
+- ninguna escritura pública es posible;
+- las relaciones cruzadas entre marcas son rechazadas;
+- las pruebas pgTAP, los tipos generados y `pnpm check` fueron aprobados;
+- los comandos y límites operativos están documentados.
 
 ## 15. Plan de implementación
 
 El plan detallado está documentado en
 [`2026-09-12-supabase-local-catalog-implementation.md`](2026-09-12-supabase-local-catalog-implementation.md).
-No se crearán migraciones antes de revisar y aprobar ese plan.
+Sus nueve etapas fueron ejecutadas y verificadas en orden.
 
 ## 16. Referencias
 
