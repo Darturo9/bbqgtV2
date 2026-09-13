@@ -2,7 +2,7 @@
 
 - Estado: aprobado
 - Fecha: 2026-09-13
-- Implementación: pendiente
+- Implementación: planificada en `2026-09-13-web-catalog-reading-implementation.md`
 - Alcance: primera lectura vertical de catálogo desde `apps/web`
 - Dependencias relacionadas: Supabase local, `@bbqbros/contracts` y `@bbqbros/domain`
 

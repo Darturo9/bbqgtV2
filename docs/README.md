@@ -24,12 +24,13 @@ actualizarse en el mismo cambio que modifica su comportamiento.
 8. `plans/2026-09-12-supabase-local-catalog-design.md`
 9. `plans/2026-09-12-supabase-local-catalog-implementation.md`
 10. `plans/2026-09-13-web-catalog-reading-design.md`
-11. `../supabase/README.md`
-12. `runbooks/local-development.md`
-13. `../packages/domain/README.md`
-14. `architecture/system-context.md`
-15. `architecture/environments.md`
-16. `decisions/README.md`
+11. `plans/2026-09-13-web-catalog-reading-implementation.md`
+12. `../supabase/README.md`
+13. `runbooks/local-development.md`
+14. `../packages/domain/README.md`
+15. `architecture/system-context.md`
+16. `architecture/environments.md`
+17. `decisions/README.md`
 
 Un documento debe indicar hechos confirmados, decisiones, supuestos y asuntos pendientes por
 separado. No se documentan valores de secretos.
