@@ -29,6 +29,7 @@ export const DOMAIN_ERROR_CODES = {
   cartTotalLimitExceeded: "CART_TOTAL_LIMIT_EXCEEDED",
   cartLinePriceMismatch: "CART_LINE_PRICE_MISMATCH",
   specialInstructionsTooLong: "SPECIAL_INSTRUCTIONS_TOO_LONG",
+  invalidCartRevalidation: "INVALID_CART_REVALIDATION",
   requiredSelectionMissing: "REQUIRED_SELECTION_MISSING",
   selectionLimitExceeded: "SELECTION_LIMIT_EXCEEDED",
   moneyOverflow: "MONEY_OVERFLOW",

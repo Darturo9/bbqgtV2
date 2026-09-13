@@ -93,3 +93,10 @@ export {
   updateCartLineQuantity,
   type AddCartLineInput,
 } from "./cart/cart.js";
+export {
+  CART_REVALIDATION_ISSUE_CODES,
+  revalidateCart,
+  type CartRevalidationIssue,
+  type CartRevalidationProduct,
+  type CartRevalidationReport,
+} from "./cart/revalidation.js";
