@@ -9,6 +9,7 @@
     "lint": "eslint . --max-warnings=0",
     "start": "next start",
     "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.mts",
     "test:watch": "vitest",
     "typecheck": "next typegen && tsc --noEmit"
   },

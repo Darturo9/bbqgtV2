@@ -69,6 +69,9 @@ jobs:
       - name: Verify local database
         run: pnpm check:database
 
+      - name: Verify web catalog integration
+        run: pnpm --filter @bbqbros/web test:integration
+
       - name: Stop local Supabase
         if: always()
         run: pnpm db:stop

@@ -598,7 +598,7 @@ feat(web): render public delivery catalog
 
 ### Etapa 8: probar el recorrido contra Supabase local
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
