@@ -494,7 +494,7 @@ feat(web): map effective catalog availability
 
 ### Etapa 6: componer el servicio y la caché
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
