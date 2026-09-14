@@ -448,7 +448,7 @@ feat(web): query public catalog from Supabase
 
 ### Etapa 5: mapear catálogo y aplicar disponibilidad
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
