@@ -404,7 +404,7 @@ feat(web): define catalog read model
 
 ### Etapa 4: implementar el adaptador tipado de Supabase
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
