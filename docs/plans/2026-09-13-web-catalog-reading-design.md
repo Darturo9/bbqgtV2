@@ -1,8 +1,8 @@
 # Diseño de lectura del catálogo en la web
 
-- Estado: aprobado
+- Estado: implementado y verificado
 - Fecha: 2026-09-13
-- Implementación: planificada en `2026-09-13-web-catalog-reading-implementation.md`
+- Implementación: completada el 2026-09-13 según `2026-09-13-web-catalog-reading-implementation.md`
 - Alcance: primera lectura vertical de catálogo desde `apps/web`
 - Dependencias relacionadas: Supabase local, `@bbqbros/contracts` y `@bbqbros/domain`
 

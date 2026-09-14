@@ -32,6 +32,7 @@ const supabaseOrigin = readSupabaseOrigin();
 const catalogImagePattern = new URL(CATALOG_IMAGE_PATH, supabaseOrigin);
 
 const nextConfig: NextConfig = {
+  agentRules: false,
   cacheComponents: true,
   cacheLife: {
     catalog: {

@@ -78,6 +78,82 @@ pnpm db:test
 pnpm db:types:check
 ```
 
+## Preparar la web con credenciales públicas locales
+
+Copia la plantilla sin modificarla ni versionar valores locales:
+
+```bash
+cp apps/web/.env.example apps/web/.env.local
+```
+
+Obtén únicamente los dos valores públicos que necesita la web. El filtro evita imprimir el JSON de
+estado completo, que también contiene credenciales privilegiadas locales:
+
+```bash
+pnpm exec supabase status -o json --agent no | node -e 'let input = ""; process.stdin.on("data", (chunk) => (input += chunk)); process.stdin.on("end", () => { const status = JSON.parse(input); console.log(`SUPABASE_URL=${status.API_URL}`); console.log(`SUPABASE_PUBLISHABLE_KEY=${status.PUBLISHABLE_KEY}`); });'
+```
+
+Reemplaza las dos líneas ficticias correspondientes dentro de `apps/web/.env.local` y conserva los
+slugs locales incluidos en la plantilla:
+
+```text
+SUPABASE_URL
+SUPABASE_PUBLISHABLE_KEY
+CATALOG_BRAND_SLUG
+CATALOG_LOCATION_SLUG
+```
+
+La llave debe comenzar con `sb_publishable_`. No uses `sb_secret_`, `service_role`, la llave `anon`
+heredada ni una URL de base de datos. Ninguna de estas variables lleva el prefijo `NEXT_PUBLIC_`, y
+`apps/web/.env.local` nunca se versiona.
+
+## Ejecutar y revisar la web
+
+Con Supabase iniciado y `pnpm check:database` aprobado:
+
+```bash
+pnpm --filter @bbqbros/web dev
+```
+
+Abre [http://localhost:3000](http://localhost:3000). El catálogo sintético esperado contiene
+exactamente:
+
+| Nivel     | Valor esperado                                           |
+| --------- | -------------------------------------------------------- |
+| Marca     | `BBQBROS`                                                |
+| Sede      | `Sucursal Demo Norte`                                    |
+| Categoría | `Combos de Prueba`                                       |
+| Producto  | `Combo Clásico Demo`, precio vigente `Q65.00`            |
+| Producto  | `Combo Oferta Demo`, `Q69.90` vigente y `Q80.00` regular |
+
+La página debe revisarse al menos en un viewport móvil de `390 × 844` y uno de escritorio de
+`1440 × 900`. En ambos casos comprueba que no exista desbordamiento horizontal, texto recortado,
+superposición, recursos fallidos ni errores en la consola. La jerarquía debe conservar un único
+`h1`, categorías como `h2` y productos como artículos dentro de listas.
+
+## Estados públicos del catálogo
+
+El contrato distingue cuatro resultados sin exponer detalles internos:
+
+| Estado      | Comprobación                                                   |
+| ----------- | -------------------------------------------------------------- |
+| `success`   | Integración real contra el seed local y revisión visual        |
+| `empty`     | Prueba de componente con marca y sede conocidas, sin vendibles |
+| `not_found` | Integración con marca y sede desconocidas                      |
+| `failure`   | Pruebas de servicio/página con causa interna sanitizada        |
+
+Las pruebas controladas no modifican el seed. Para repetir la certificación:
+
+```bash
+pnpm check
+pnpm check:database
+pnpm --filter @bbqbros/web test:integration
+```
+
+El build de producción también debe aprobar con Supabase detenido, sin `.env.local` y sin las cuatro
+variables definidas. Durante el build no se consulta la base; la lectura ocurre al atender la
+petición dinámica.
+
 ## Migraciones y tipos
 
 Crear el archivo de una migración mediante la CLI, revisar su timestamp generado y editar solamente
@@ -128,8 +204,9 @@ recurso destructivo y requiere decidir conscientemente que los datos locales pue
 ## Integración continua
 
 GitHub Actions ejecuta dos trabajos independientes: calidad del monorepo y verificación de base de
-datos. El segundo crea un Supabase local efímero, ejecuta `pnpm check:database` y lo detiene en un
-paso `always()`. No necesita secretos ni un proyecto remoto enlazado.
+datos. El segundo crea un Supabase local efímero, ejecuta `pnpm check:database`, valida la
+integración web con la llave publicable local y lo detiene en un paso `always()`. No necesita
+secretos ni un proyecto remoto enlazado.
 
 ## Restricciones
 

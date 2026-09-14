@@ -1,6 +1,6 @@
 # Plan de implementación de lectura del catálogo en la web
 
-- Estado: listo para ejecutar
+- Estado: completado y verificado
 - Fecha: 2026-09-13
 - Diseño relacionado: `2026-09-13-web-catalog-reading-design.md`
 - Alcance: primera lectura vertical de catálogo desde Supabase local hasta `apps/web`
@@ -649,7 +649,7 @@ test(web): verify catalog against local Supabase
 
 ### Etapa 9: documentar operación y validar la entrega completa
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 
