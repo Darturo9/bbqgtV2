@@ -545,7 +545,7 @@ feat(web): cache catalog reads by location
 
 ### Etapa 7: presentar el catálogo y sus estados
 
-Estado de ejecución: pendiente.
+Estado de ejecución: completada y verificada el 2026-09-13.
 
 Archivos:
 

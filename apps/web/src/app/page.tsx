@@ -1,16 +1,36 @@
+import { connection } from "next/server";
+import { Suspense } from "react";
+
+import { CatalogContent, CatalogLoading } from "@/features/catalog/components/catalog-content";
+import type { CatalogReadResult } from "@/features/catalog/model/catalog-read-result";
+import { getCachedCatalog } from "@/features/catalog/server/cached-catalog";
+import { readCatalogEnvironment } from "@/features/catalog/server/catalog-environment";
+import { readCatalogFailure } from "@/features/catalog/server/create-catalog-service";
+
+export async function DynamicCatalog() {
+  await connection();
+
+  let brandSlug = "unconfigured";
+  let locationSlug = "unconfigured";
+  let result: CatalogReadResult;
+
+  try {
+    const environment = readCatalogEnvironment();
+    brandSlug = environment.brandSlug;
+    locationSlug = environment.locationSlug;
+
+    result = await getCachedCatalog(brandSlug, locationSlug);
+  } catch (cause) {
+    result = await readCatalogFailure(cause, brandSlug, locationSlug);
+  }
+
+  return <CatalogContent result={result} />;
+}
+
 export default function HomePage() {
   return (
-    <main className="bg-brand-dark text-brand-light grid min-h-screen place-items-center p-6">
-      <section className="max-w-xl text-center" aria-labelledby="page-title">
-        <p className="font-brand text-brand-primary mb-3 text-3xl tracking-[0.08em] uppercase">
-          BBQBROS
-        </p>
-        <h1 id="page-title" className="font-editorial text-4xl font-bold sm:text-5xl">
-          Pedidos a domicilio
-        </h1>
-        <div className="bg-brand-primary mx-auto my-5 h-1 w-16" aria-hidden="true" />
-        <p className="text-brand-light/75 text-base">La nueva experiencia está en construcción.</p>
-      </section>
-    </main>
+    <Suspense fallback={<CatalogLoading />}>
+      <DynamicCatalog />
+    </Suspense>
   );
 }

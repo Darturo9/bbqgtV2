@@ -1,6 +1,7 @@
 import "server-only";
 
 import { readCatalogEnvironment } from "./catalog-environment";
+import type { CatalogReadResult } from "../model/catalog-read-result";
 import {
   createCatalogService,
   type CatalogFailureLogEntry,
@@ -72,4 +73,17 @@ export function createConfiguredCatalogService(
   } catch (cause) {
     return createCatalogService({ repository: failingRepository(cause), logger });
   }
+}
+
+export async function readCatalogFailure(
+  cause: unknown,
+  brandSlug: string,
+  locationSlug: string,
+): Promise<CatalogReadResult> {
+  const service = createCatalogService({
+    repository: failingRepository(cause),
+    logger: serverCatalogLogger,
+  });
+
+  return service.read(brandSlug, locationSlug);
 }

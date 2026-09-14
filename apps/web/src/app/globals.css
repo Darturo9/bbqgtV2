@@ -20,7 +20,36 @@
 
 body {
   margin: 0;
-  background: var(--bbq-white);
+  background: #f4efe5;
   color: var(--bbq-black);
   font-family: var(--font-ui);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--bbq-yellow);
+  color: var(--bbq-black);
+}
+
+:focus-visible {
+  outline: 3px solid var(--bbq-yellow);
+  outline-offset: 4px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
